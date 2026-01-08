@@ -23,18 +23,28 @@ const timezoneMapping = {
   'Pacific/Honolulu': 'Pacific/Honolulu'
 };
 
-// Set the default timezone based on user's detected timezone
+// Set the default output timezone based on user's detected timezone
 const mappedTimezone = timezoneMapping[userTimezone] || 'America/New_York';
-document.getElementById('sourceTimezone').value = mappedTimezone;
 document.getElementById('outputTimezone').value = mappedTimezone;
 
-// Handle custom date range toggle
-const rangeInputs = document.querySelectorAll('input[name="range"]');
+// Handle date range button toggle
+const rangeButtons = document.querySelectorAll('.toggle-btn');
 const customDatesDiv = document.getElementById('customDates');
+let selectedRange = '1w';
 
-rangeInputs.forEach(input => {
-  input.addEventListener('change', (e) => {
-    customDatesDiv.style.display = e.target.value === 'custom' ? 'flex' : 'none';
+rangeButtons.forEach(button => {
+  button.addEventListener('click', (e) => {
+    // Remove active class from all buttons
+    rangeButtons.forEach(btn => btn.classList.remove('active'));
+    
+    // Add active class to clicked button
+    e.target.classList.add('active');
+    
+    // Store selected value
+    selectedRange = e.target.dataset.value;
+    
+    // Show/hide custom dates
+    customDatesDiv.style.display = selectedRange === 'custom' ? 'flex' : 'none';
   });
 });
 
@@ -49,15 +59,14 @@ form.addEventListener('submit', async (e) => {
   
   // Collect form data
   const payload = {
-    rangePreset: document.querySelector('input[name="range"]:checked').value,
+    rangePreset: selectedRange,
     customStartDate: document.getElementById('customStartDate').value,
     customEndDate: document.getElementById('customEndDate').value,
     dailyStartTime: document.getElementById('dailyStartTime').value,
     dailyEndTime: document.getElementById('dailyEndTime').value,
     minDuration: parseInt(document.getElementById('minDuration').value),
-    daysOfWeek: Array.from(document.querySelectorAll('input[name="dayOfWeek"]:checked'))
-      .map(cb => parseInt(cb.value)),
-    sourceTimezone: document.getElementById('sourceTimezone').value.trim(),
+    daysOfWeek: [1, 2, 3, 4, 5, 6, 7], // All days of the week (Mon-Sun) including weekends
+    sourceTimezone: mappedTimezone, // Use auto-detected timezone
     outputTimezone: document.getElementById('outputTimezone').value.trim()
   };
   
@@ -123,12 +132,6 @@ document.getElementById('backBtn').addEventListener('click', () => {
 
 // Validation function
 function validatePayload(payload) {
-  // Check days selected
-  if (payload.daysOfWeek.length === 0) {
-    showError('Please select at least one day of the week.');
-    return false;
-  }
-  
   // Check custom dates
   if (payload.rangePreset === 'custom') {
     if (!payload.customStartDate || !payload.customEndDate) {
