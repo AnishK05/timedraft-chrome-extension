@@ -164,8 +164,8 @@ function validatePayload(payload) {
       showError('Please select both start and end dates.');
       return false;
     }
-    if (payload.customStartDate >= payload.customEndDate) {
-      showError('Start date must be before end date.');
+    if (payload.customStartDate > payload.customEndDate) {
+      showError('Start date cannot be after end date.');
       return false;
     }
   }

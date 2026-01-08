@@ -24,6 +24,7 @@ body {
   padding: 22px 20px;
   text-align: center;
   box-shadow: 0 4px 20px rgba(16, 185, 129, 0.15);
+  position: relative;
 }
 
 .header h1 {
@@ -38,6 +39,35 @@ body {
   opacity: 0.95;
   font-weight: 400;
   letter-spacing: 0.2px;
+}
+
+.help-link {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.help-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  background: rgba(255, 255, 255, 0.25);
+  color: white;
+  border-radius: 50%;
+  font-size: 13px;
+  font-weight: 700;
+  transition: all 0.2s ease;
+  border: 1.5px solid rgba(255, 255, 255, 0.4);
+}
+
+.help-link:hover .help-icon {
+  background: rgba(255, 255, 255, 0.35);
+  border-color: rgba(255, 255, 255, 0.6);
+  transform: scale(1.1);
 }
 
 form {
@@ -94,6 +124,15 @@ select {
   background: white;
   transition: all 0.2s ease;
   font-family: inherit;
+}
+
+select {
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%236b7280' d='M6 9L1 4h10z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  background-size: 12px;
+  padding-right: 32px;
 }
 
 input:hover,
