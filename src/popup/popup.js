@@ -23,9 +23,24 @@ const timezoneMapping = {
   'Pacific/Honolulu': 'Pacific/Honolulu'
 };
 
+// Friendly timezone names for display
+const timezoneDisplayNames = {
+  'America/New_York': 'Eastern Time (ET)',
+  'America/Chicago': 'Central Time (CT)',
+  'America/Denver': 'Mountain Time (MT)',
+  'America/Phoenix': 'Arizona Time (MST)',
+  'America/Los_Angeles': 'Pacific Time (PT)',
+  'America/Anchorage': 'Alaska Time (AKT)',
+  'Pacific/Honolulu': 'Hawaii Time (HST)'
+};
+
 // Set the default output timezone based on user's detected timezone
 const mappedTimezone = timezoneMapping[userTimezone] || 'America/New_York';
 document.getElementById('outputTimezone').value = mappedTimezone;
+
+// Display the detected timezone to the user
+const displayName = timezoneDisplayNames[mappedTimezone] || userTimezone;
+document.getElementById('detectedTimezone').textContent = displayName;
 
 // Handle date range button toggle
 const rangeButtons = document.querySelectorAll('.toggle-btn');
@@ -104,22 +119,31 @@ form.addEventListener('submit', async (e) => {
 });
 
 // Copy to clipboard button
-document.getElementById('copyBtn').addEventListener('click', async () => {
+const copyBtn = document.getElementById('copyBtn');
+const originalCopyText = '📋 Copy to Clipboard';
+const copiedText = '✓ Copied!';
+
+copyBtn.addEventListener('click', async () => {
   const text = document.getElementById('resultText').textContent;
-  const statusMsg = document.getElementById('statusMessage');
   
   try {
     await navigator.clipboard.writeText(text);
-    statusMsg.textContent = '✓ Copied to clipboard!';
-    statusMsg.className = 'status-message success';
+    copyBtn.textContent = copiedText;
+    copyBtn.classList.add('copied');
     
     setTimeout(() => {
-      statusMsg.style.display = 'none';
-    }, 3000);
+      copyBtn.textContent = originalCopyText;
+      copyBtn.classList.remove('copied');
+    }, 2000);
   } catch (error) {
     console.error('Copy failed:', error);
-    statusMsg.textContent = '✗ Copy failed. Please select and copy manually.';
-    statusMsg.className = 'status-message error';
+    copyBtn.textContent = '✗ Copy failed';
+    copyBtn.classList.add('error');
+    
+    setTimeout(() => {
+      copyBtn.textContent = originalCopyText;
+      copyBtn.classList.remove('error');
+    }, 3000);
   }
 });
 
@@ -127,7 +151,9 @@ document.getElementById('copyBtn').addEventListener('click', async () => {
 document.getElementById('backBtn').addEventListener('click', () => {
   resultSection.style.display = 'none';
   form.style.display = 'block';
-  document.getElementById('statusMessage').style.display = 'none';
+  // Reset copy button state
+  copyBtn.textContent = originalCopyText;
+  copyBtn.classList.remove('copied', 'error');
 });
 
 // Validation function
