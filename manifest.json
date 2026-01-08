@@ -1,0 +1,42 @@
+{
+  "manifest_version": 3,
+  "name": "TimeDraft",
+  "version": "1.0.0",
+  "description": "Insert your calendar availability into Gmail drafts with one click",
+  "permissions": [
+    "identity"
+  ],
+  "host_permissions": [
+    "https://www.googleapis.com/*"
+  ],
+  "action": {
+    "default_popup": "src/popup/popup.html",
+    "default_icon": {
+      "16": "assets/icon16.png",
+      "48": "assets/icon48.png",
+      "128": "assets/icon128.png"
+    },
+    "default_title": "TimeDraft - Insert Availability"
+  },
+  "background": {
+    "service_worker": "src/background/service_worker.js"
+  },
+  "oauth2": {
+    "client_id": "1072654121650-hjve5r6pi2n1ndi198a0aaiqtuj8srhg.apps.googleusercontent.com",
+    "scopes": [
+      "https://www.googleapis.com/auth/calendar.readonly"
+    ]
+  },
+  "icons": {
+    "16": "assets/icon16.png",
+    "48": "assets/icon48.png",
+    "128": "assets/icon128.png"
+  },
+  "web_accessible_resources": [
+    {
+      "resources": ["src/lib/luxon.min.js"],
+      "matches": ["https://mail.google.com/*"]
+    }
+  ]
+}
+
