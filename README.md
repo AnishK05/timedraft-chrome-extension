@@ -7,12 +7,12 @@
 TimeDraft pulls your free/busy times from Google Calendar and formats them into professional availability text that you can paste directly into your emails. Simply specify your preferences (date range, working hours, timezone), click Generate, and copy the results.
 
 <p align="center">
-  <img src="resources/ui1.png" alt="TimeDraft Settings" width="20%"/>
+  <img src="resources/ui1.png" alt="TimeDraft Settings" width="25%"/>
   <img src="resources/ui2.png" alt="Generated Availability" width="30%"/>
   <img src="resources/email1.png" alt="Email Integration" width="40%"/>
 </p>
 <p align="center">
-  <img src="resources/ui3.png" alt="Overall System" width="80%"/>
+  <img src="resources/ui3.png" alt="Overall System" width="90%"/>
 </p>
 
 ## Key Features
