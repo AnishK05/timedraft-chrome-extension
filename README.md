@@ -1,1 +1,1 @@
-# timedraft-chrome-extension
+# TimeDraft - Chrome Extension
