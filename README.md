@@ -8,11 +8,11 @@ TimeDraft pulls your free/busy times from Google Calendar and formats them into 
 
 <p align="center">
   <img src="resources/ui1.png" alt="TimeDraft Settings" width="30%"/>
-  <img src="resources/ui2.png" alt="Generated Availability" width="30%"/>
-  <img src="resources/email1.png" alt="Email Integration" width="30%"/>
+  <img src="resources/ui2.png" alt="Generated Availability" width="40%"/>
+  <img src="resources/email1.png" alt="Email Integration" width="40%"/>
 </p>
 <p align="center">
-  <img src="resources/ui3.png" alt="Overall System" width="50%"/>
+  <img src="resources/ui3.png" alt="Overall System" width="80%"/>
 </p>
 
 ## Key Features
