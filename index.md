@@ -9,4 +9,4 @@ availability slots from your Google Calendar.
 - No data storage
 
 ## Links
-- GitHub: https://github.com/AnishK05/timedraft-chrome-extension
+- Github: [https://github.com/AnishK05/timedraft-chrome-extension](https://github.com/AnishK05/timedraft-chrome-extension)
