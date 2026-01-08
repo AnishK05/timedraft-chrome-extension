@@ -10,3 +10,6 @@ availability slots from your Google Calendar.
 
 ## Links
 - Github: [https://github.com/AnishK05/timedraft-chrome-extension](https://github.com/AnishK05/timedraft-chrome-extension)
+
+## Legal
+- Privacy Policy: [https://anishk05.github.io/timedraft-chrome-extension/privacy-policy](https://anishk05.github.io/timedraft-chrome-extension/privacy-policy)
