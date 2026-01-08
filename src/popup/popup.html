@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TimeDraft</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h1>📅 TimeDraft</h1>
+      <p class="subtitle">Generate your availability</p>
+    </div>
+
+    <form id="availabilityForm">
+      <div class="form-group">
+        <label>Date Range</label>
+        <div class="radio-group">
+          <label class="radio-label">
+            <input type="radio" name="range" value="1w" checked>
+            Next 1 week
+          </label>
+          <label class="radio-label">
+            <input type="radio" name="range" value="2w">
+            Next 2 weeks
+          </label>
+          <label class="radio-label">
+            <input type="radio" name="range" value="custom">
+            Custom dates
+          </label>
+        </div>
+        <div class="custom-dates" id="customDates" style="display: none;">
+          <input type="date" id="customStartDate" />
+          <span>to</span>
+          <input type="date" id="customEndDate" />
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Daily Working Hours</label>
+        <div class="time-inputs">
+          <input type="time" id="dailyStartTime" value="09:00" />
+          <span>to</span>
+          <input type="time" id="dailyEndTime" value="17:00" />
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Minimum Meeting Duration</label>
+        <select id="minDuration">
+          <option value="30" selected>30 minutes</option>
+          <option value="45">45 minutes</option>
+          <option value="60">60 minutes</option>
+          <option value="90">90 minutes</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label>Days of Week</label>
+        <div class="checkbox-group">
+          <label class="checkbox-label">
+            <input type="checkbox" name="dayOfWeek" value="1" checked> Mon
+          </label>
+          <label class="checkbox-label">
+            <input type="checkbox" name="dayOfWeek" value="2" checked> Tue
+          </label>
+          <label class="checkbox-label">
+            <input type="checkbox" name="dayOfWeek" value="3" checked> Wed
+          </label>
+          <label class="checkbox-label">
+            <input type="checkbox" name="dayOfWeek" value="4" checked> Thu
+          </label>
+          <label class="checkbox-label">
+            <input type="checkbox" name="dayOfWeek" value="5" checked> Fri
+          </label>
+          <label class="checkbox-label">
+            <input type="checkbox" name="dayOfWeek" value="6"> Sat
+          </label>
+          <label class="checkbox-label">
+            <input type="checkbox" name="dayOfWeek" value="7"> Sun
+          </label>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Your Timezone</label>
+        <select id="sourceTimezone">
+          <option value="America/New_York">Eastern Time (ET)</option>
+          <option value="America/Chicago">Central Time (CT)</option>
+          <option value="America/Denver">Mountain Time (MT)</option>
+          <option value="America/Phoenix">Arizona Time (MST - no DST)</option>
+          <option value="America/Los_Angeles">Pacific Time (PT)</option>
+          <option value="America/Anchorage">Alaska Time (AKT)</option>
+          <option value="Pacific/Honolulu">Hawaii Time (HST)</option>
+        </select>
+        <small>Your local timezone</small>
+      </div>
+
+      <div class="form-group">
+        <label>Output Timezone</label>
+        <select id="outputTimezone">
+          <option value="America/New_York">Eastern Time (ET)</option>
+          <option value="America/Chicago">Central Time (CT)</option>
+          <option value="America/Denver">Mountain Time (MT)</option>
+          <option value="America/Phoenix">Arizona Time (MST - no DST)</option>
+          <option value="America/Los_Angeles">Pacific Time (PT)</option>
+          <option value="America/Anchorage">Alaska Time (AKT)</option>
+          <option value="Pacific/Honolulu">Hawaii Time (HST)</option>
+        </select>
+        <small>Timezone for the email text</small>
+      </div>
+
+      <div class="actions">
+        <button type="submit" class="btn btn-primary" id="generateBtn">
+          Generate Availability
+        </button>
+      </div>
+    </form>
+
+    <div id="resultSection" style="display: none;">
+      <div class="result-header">
+        <h3>Your Availability</h3>
+        <button class="btn btn-secondary btn-small" id="backBtn">← Back</button>
+      </div>
+      <div class="result-box">
+        <pre id="resultText"></pre>
+      </div>
+      <div class="actions">
+        <button class="btn btn-primary" id="copyBtn">
+          📋 Copy to Clipboard
+        </button>
+      </div>
+      <div id="statusMessage" class="status-message"></div>
+    </div>
+
+    <div id="loadingSection" style="display: none;">
+      <div class="loading-spinner"></div>
+      <p class="loading-text">Fetching your calendar availability...</p>
+    </div>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>
+
