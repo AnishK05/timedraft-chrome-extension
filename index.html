@@ -2,28 +2,235 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <title>TimeDraft</title>
+    <title>TimeDraft 📅</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <style>
+      body {
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+        line-height: 1.6;
+        max-width: 900px;
+        margin: 0 auto;
+        padding: 20px;
+        color: #24292e;
+      }
+      h1 {
+        border-bottom: 1px solid #eaecef;
+        padding-bottom: 0.3em;
+        font-size: 2em;
+      }
+      h2 {
+        border-bottom: 1px solid #eaecef;
+        padding-bottom: 0.3em;
+        margin-top: 24px;
+        margin-bottom: 16px;
+        font-size: 1.5em;
+      }
+      strong {
+        font-weight: 600;
+      }
+      ul {
+        padding-left: 2em;
+      }
+      li {
+        margin-bottom: 0.5em;
+      }
+      pre {
+        background-color: #f6f8fa;
+        border-radius: 6px;
+        padding: 16px;
+        overflow: auto;
+      }
+      code {
+        background-color: #f6f8fa;
+        border-radius: 3px;
+        padding: 0.2em 0.4em;
+        font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+        font-size: 85%;
+      }
+      pre code {
+        background-color: transparent;
+        padding: 0;
+      }
+      a {
+        color: #0366d6;
+        text-decoration: none;
+      }
+      a:hover {
+        text-decoration: underline;
+      }
+      .tagline {
+        font-size: 1.1em;
+        margin-bottom: 1.5em;
+      }
+      .screenshots {
+        text-align: center;
+        margin: 20px 0;
+      }
+      .screenshots img {
+        margin: 5px;
+        max-width: 100%;
+        border-radius: 6px;
+        box-shadow: 0 1px 3px rgba(0,0,0,0.12);
+      }
+      .screenshots-row {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-bottom: 10px;
+      }
+      .screenshots-row img {
+        max-width: 30%;
+        min-width: 200px;
+      }
+      .screenshots-full {
+        margin-top: 10px;
+      }
+      .screenshots-full img {
+        width: 100%;
+      }
+      hr {
+        border: 0;
+        border-top: 1px solid #eaecef;
+        margin: 24px 0;
+      }
+    </style>
   </head>
 
   <body>
-    <h1>TimeDraft</h1>
+    <h1>TimeDraft 📅</h1>
 
     <p>
-      TimeDraft is a Chrome extension that helps users generate
-      availability time slots from their Google Calendar.
+      <strong>Privacy Policy:</strong>
+      <a href="https://timedraft.anishkalra.com/privacy-policy.html">https://timedraft.anishkalra.com/privacy-policy.html</a>
     </p>
 
-    <p>
-      The extension only requests read-only access to calendar data
-      and does not store or share user information.
+    <p class="tagline">
+      <strong>Never waste time coordinating meetings again.</strong> TimeDraft is a Chrome extension that instantly generates your Google Calendar availability in a clean, shareable format—perfect for scheduling meetings via email.
     </p>
+
+    <h2>What It Does</h2>
+
+    <p>
+      TimeDraft pulls your free/busy times from Google Calendar and formats them into professional availability text that you can paste directly into your emails. Simply specify your preferences (date range, working hours, timezone), click Generate, and copy the results.
+    </p>
+
+    <div class="screenshots">
+      <div class="screenshots-row">
+        <img src="resources/ui1.png" alt="TimeDraft Settings" />
+        <img src="resources/ui2.png" alt="Generated Availability" />
+        <img src="resources/email1.png" alt="Email Integration" />
+      </div>
+      <div class="screenshots-full">
+        <img src="resources/ui3.png" alt="Overall System" />
+      </div>
+    </div>
+
+    <h2>Key Features</h2>
+
+    <ul>
+      <li><strong>Smart Availability Detection</strong> - Analyzes your Google Calendar to find free time slots</li>
+      <li><strong>Timezone Conversion</strong> - Display your availability in any timezone (ET, CT, MT, PT, etc.)</li>
+      <li><strong>Customizable Preferences</strong> - Set your working hours, minimum meeting duration, and date range</li>
+      <li><strong>One-Click Copy</strong> - Copy formatted availability text directly to your clipboard</li>
+      <li><strong>Privacy-Focused</strong> - Only accesses free/busy data, never reads event details</li>
+      <li><strong>Secure OAuth</strong> - Uses Google's official OAuth flow for calendar access</li>
+    </ul>
+
+    <h2>How It Works</h2>
+
+    <ol>
+      <li>Click the TimeDraft extension icon in your browser</li>
+      <li>Configure your preferences:
+        <ul>
+          <li><strong>Date Range</strong>: 1 week, 2 weeks, or custom dates</li>
+          <li><strong>Working Hours</strong>: Your typical availability window (e.g., 9 AM - 5 PM)</li>
+          <li><strong>Minimum Duration</strong>: Shortest meeting length to show (30, 45, 60, or 90 minutes)</li>
+          <li><strong>Display Timezone</strong>: The timezone for presenting your availability</li>
+        </ul>
+      </li>
+      <li>Click "Generate Availability"</li>
+      <li>Copy the formatted text and paste it into your email</li>
+    </ol>
+
+    <p>The extension generates professional text like:</p>
+
+    <pre><code>Here are a few times that work for me over the next week (ET):
+
+Thu, Jan 8: 9:00 AM–1:00 PM, 3:00 PM–5:00 PM
+Fri, Jan 9: 9:00 AM–5:00 PM
+Sat, Jan 10: 9:00 AM–5:00 PM
+Sun, Jan 11: 9:00 AM–5:00 PM
+Mon, Jan 12: 9:00 AM–5:00 PM
+
+If none of these work, feel free to share a few times that do.</code></pre>
+
+    <h2>Technical Details</h2>
+
+    <h3>Technologies Used</h3>
+
+    <ul>
+      <li><strong>Chrome Extension Manifest V3</strong> - Latest extension architecture</li>
+      <li><strong>Google Calendar API</strong> - FreeBusy endpoint for availability data</li>
+      <li><strong>Luxon</strong> - Industry-standard timezone handling and date manipulation</li>
+      <li><strong>OAuth 2.0</strong> - Secure authentication via Chrome Identity API</li>
+      <li><strong>Vanilla JavaScript</strong> - No frameworks, lightweight and fast</li>
+    </ul>
+
+    <h3>Architecture</h3>
+
+    <ul>
+      <li><strong>Popup Interface</strong> (<code>src/popup/</code>) - User-facing form and results display</li>
+      <li><strong>Background Service Worker</strong> (<code>src/background/</code>) - OAuth handling, API calls, and availability computation</li>
+      <li><strong>Core Algorithm</strong> - Intelligent free time detection with timezone conversion</li>
+      <li><strong>Text Formatter</strong> - Generates human-readable availability text</li>
+    </ul>
+
+    <h3>Privacy & Security</h3>
+
+    <p>
+      <strong>Open source</strong> - All code is publicly available for review<br>
+      <strong>Minimal permissions</strong> - Only requests calendar read access<br>
+      <strong>No data storage</strong> - Preferences are not saved; all processing happens locally<br>
+      <strong>FreeBusy API only</strong> - Never reads event titles, descriptions, or attendees<br>
+      <strong>Secure OAuth</strong> - Uses Google's official Chrome Identity API
+    </p>
+
+    <h2>Use Cases</h2>
+
+    <ul>
+      <li>Scheduling 1:1 meetings with colleagues</li>
+      <li>Finding time for client calls across timezones</li>
+      <li>Coordinating team sync-ups</li>
+      <li>Office hours scheduling</li>
+      <li>Interview coordination</li>
+    </ul>
+
+    <h2>Requirements</h2>
+
+    <ul>
+      <li>Google Chrome (or Chromium-based browser)</li>
+      <li>A Google account with Google Calendar</li>
+    </ul>
+
+    <h2>Support & Feedback</h2>
+
+    <p>
+      Found a bug or have a feature request? <a href="https://github.com/AnishK05/timedraft-chrome-extension/issues">Open an issue on GitHub</a>
+    </p>
+
+    <h2>License</h2>
+
+    <p>
+      This project is open source and available for public review to ensure transparency and security.
+    </p>
+
+    <hr>
 
     <p>
       <strong>Legal:</strong>
-      <a href="https://anishk05.github.io/timedraft-chrome-extension/privacy-policy.html">
-        Privacy Policy
-      </a>
+      <a href="https://timedraft.anishkalra.com/privacy-policy.html">Privacy Policy</a>
     </p>
   </body>
 </html>
