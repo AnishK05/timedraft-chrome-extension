@@ -2,6 +2,9 @@
 
 console.log('TimeDraft: Popup loaded');
 
+// Constants for localStorage
+const STORAGE_KEY = 'timedraft_preferences';
+
 // Get user's timezone and set as default
 const userTimezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
 
@@ -46,6 +49,9 @@ document.getElementById('detectedTimezone').textContent = displayName;
 const rangeButtons = document.querySelectorAll('.toggle-btn');
 const customDatesDiv = document.getElementById('customDates');
 let selectedRange = '1w';
+
+// Load saved preferences
+loadPreferences();
 
 rangeButtons.forEach(button => {
   button.addEventListener('click', (e) => {
@@ -191,4 +197,130 @@ function showError(message) {
     statusMsg.style.display = 'none';
   }, 5000);
 }
+
+// Save preferences to localStorage
+function savePreferences() {
+  const preferences = {
+    rangePreset: selectedRange,
+    customStartDate: document.getElementById('customStartDate').value,
+    customEndDate: document.getElementById('customEndDate').value,
+    dailyStartTime: document.getElementById('dailyStartTime').value,
+    dailyEndTime: document.getElementById('dailyEndTime').value,
+    minDuration: document.getElementById('minDuration').value,
+    outputTimezone: document.getElementById('outputTimezone').value,
+    saveEnabled: document.getElementById('savePreferences').checked
+  };
+  
+  try {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(preferences));
+    console.log('TimeDraft: Preferences saved', preferences);
+  } catch (error) {
+    console.error('TimeDraft: Failed to save preferences', error);
+  }
+}
+
+// Load preferences from localStorage
+function loadPreferences() {
+  try {
+    const saved = localStorage.getItem(STORAGE_KEY);
+    if (!saved) return;
+    
+    const preferences = JSON.parse(saved);
+    console.log('TimeDraft: Loading preferences', preferences);
+    
+    // Restore checkbox state
+    if (preferences.saveEnabled) {
+      document.getElementById('savePreferences').checked = true;
+      
+      // Restore range preset
+      if (preferences.rangePreset) {
+        selectedRange = preferences.rangePreset;
+        rangeButtons.forEach(btn => {
+          btn.classList.remove('active');
+          if (btn.dataset.value === preferences.rangePreset) {
+            btn.classList.add('active');
+          }
+        });
+        
+        // Show/hide custom dates
+        customDatesDiv.style.display = preferences.rangePreset === 'custom' ? 'flex' : 'none';
+      }
+      
+      // Restore custom dates
+      if (preferences.customStartDate) {
+        document.getElementById('customStartDate').value = preferences.customStartDate;
+      }
+      if (preferences.customEndDate) {
+        document.getElementById('customEndDate').value = preferences.customEndDate;
+      }
+      
+      // Restore working hours
+      if (preferences.dailyStartTime) {
+        document.getElementById('dailyStartTime').value = preferences.dailyStartTime;
+      }
+      if (preferences.dailyEndTime) {
+        document.getElementById('dailyEndTime').value = preferences.dailyEndTime;
+      }
+      
+      // Restore minimum duration
+      if (preferences.minDuration) {
+        document.getElementById('minDuration').value = preferences.minDuration;
+      }
+      
+      // Restore output timezone
+      if (preferences.outputTimezone) {
+        document.getElementById('outputTimezone').value = preferences.outputTimezone;
+      }
+    }
+  } catch (error) {
+    console.error('TimeDraft: Failed to load preferences', error);
+  }
+}
+
+// Handle preference changes
+document.getElementById('savePreferences').addEventListener('change', (e) => {
+  if (e.target.checked) {
+    savePreferences();
+  } else {
+    // Clear saved preferences when unchecked
+    try {
+      localStorage.removeItem(STORAGE_KEY);
+      console.log('TimeDraft: Preferences cleared');
+    } catch (error) {
+      console.error('TimeDraft: Failed to clear preferences', error);
+    }
+  }
+});
+
+// Auto-save when any preference changes (if save checkbox is checked)
+const autoSaveInputs = [
+  'customStartDate',
+  'customEndDate',
+  'dailyStartTime',
+  'dailyEndTime',
+  'minDuration',
+  'outputTimezone'
+];
+
+autoSaveInputs.forEach(id => {
+  const element = document.getElementById(id);
+  if (element) {
+    element.addEventListener('change', () => {
+      if (document.getElementById('savePreferences').checked) {
+        savePreferences();
+      }
+    });
+  }
+});
+
+// Also save when range buttons are clicked
+rangeButtons.forEach(button => {
+  const originalListener = button.onclick;
+  button.addEventListener('click', () => {
+    if (document.getElementById('savePreferences').checked) {
+      // Use setTimeout to ensure selectedRange is updated first
+      setTimeout(() => savePreferences(), 0);
+    }
+  });
+});
 

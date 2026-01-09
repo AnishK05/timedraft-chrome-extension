@@ -91,7 +91,7 @@ form {
 }
 
 .form-group {
-  margin-bottom: 18px;
+  margin-bottom: 14px;
 }
 
 .form-group:first-of-type {
@@ -266,8 +266,35 @@ small {
   font-weight: 500;
 }
 
+.save-preferences {
+  display: flex;
+  justify-content: center;
+}
+
+.save-preferences .checkbox-label {
+  display: flex;
+  align-items: center;
+  font-weight: 500;
+  cursor: pointer;
+  font-size: 13px;
+  border-radius: 8px;
+  transition: background-color 0.2s ease;
+  color: #4b5563;
+}
+
+.save-preferences .checkbox-label:hover {
+  background-color: #f9fafb;
+}
+
+.save-preferences .checkbox-label input[type="checkbox"] {
+  margin-right: 8px;
+  cursor: pointer;
+  width: 16px;
+  height: 16px;
+  accent-color: #10b981;
+}
+
 .actions {
-  margin-top: 20px;
   display: flex;
   gap: 10px;
   justify-content: stretch;
