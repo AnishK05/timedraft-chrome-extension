@@ -23,7 +23,7 @@
     "service_worker": "src/background/service_worker.js"
   },
   "oauth2": {
-    "client_id": "1072654121650-hjve5r6pi2n1ndi198a0aaiqtuj8srhg.apps.googleusercontent.com",
+    "client_id": "1072654121650-5kga5n1pq282rnlao0c58apn4kd1t9ng.apps.googleusercontent.com",
     "scopes": [
       "https://www.googleapis.com/auth/calendar.readonly"
     ]
