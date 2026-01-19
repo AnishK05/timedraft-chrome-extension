@@ -2,6 +2,8 @@
 
 **Never waste time coordinating meetings again.** TimeDraft is a Chrome extension that instantly generates your Google Calendar availability in a clean, shareable format—perfect for scheduling meetings via email.
 
+**[Download TimeDraft from the Chrome Web Store](https://chromewebstore.google.com/detail/timedraft/efhedieleheodmmelckemgfjkjkgflep)**
+
 ## What It Does
 
 TimeDraft pulls your free/busy times from Google Calendar and formats them into professional availability text that you can paste directly into your emails. Simply specify your preferences (date range, working hours, timezone), click Generate, and copy the results.
